@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L'IA avec esprit critique</title>
+    <title>Comprendre l'IA en 5 concepts</title>
     <style>
         * {
             margin: 0;
@@ -19,7 +19,7 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
@@ -28,264 +28,247 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 40px;
+            padding: 40px 30px;
             text-align: center;
         }
         
-        h1 {
+        .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            font-weight: 700;
+            font-weight: 800;
         }
         
-        .subtitle {
+        .header .subtitle {
             font-size: 1.2em;
             opacity: 0.95;
             font-weight: 300;
         }
         
-        .central-concept {
-            background: #f8f9fa;
-            padding: 40px;
-            text-align: center;
-            border-bottom: 3px solid #e9ecef;
-        }
-        
-        .loop {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        
-        .loop-item {
-            background: white;
-            padding: 20px 30px;
-            border-radius: 50px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            font-weight: 600;
-            color: #2c3e50;
+        .concept {
+            padding: 40px 30px;
+            border-bottom: 2px solid #f0f0f0;
             position: relative;
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
         }
         
-        .loop-item:hover {
-            transform: translateY(-5px);
+        .concept:hover {
+            background: #fafafa;
         }
         
-        .arrow {
-            color: #667eea;
+        .concept:last-child {
+            border-bottom: none;
+        }
+        
+        .concept-number {
+            position: absolute;
+            left: -10px;
+            top: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 1.5em;
             font-weight: bold;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
         }
         
-        .key-message {
-            background: #667eea;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            display: inline-block;
-            margin-top: 20px;
-            font-size: 1.1em;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        .concept-content {
+            margin-left: 50px;
         }
         
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 0;
+        .concept-title {
+            font-size: 1.4em;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: 700;
         }
         
-        .section {
-            padding: 40px;
-            position: relative;
+        .concept-visual {
+            background: #f8f9ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            border-left: 4px solid #667eea;
         }
         
-        .section h2 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
+        .concept-explanation {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1.05em;
+        }
+        
+        .visual-prediction {
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
-        .icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
+        .word-option {
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        
+        .high-prob {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .med-prob {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .low-prob {
+            background: #f44336;
+            color: white;
+        }
+        
+        .visual-transform {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .arrow {
+            font-size: 2em;
+            color: #667eea;
+        }
+        
+        .numbers {
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .cycle {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+        }
+        
+        .cycle-step {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .cycle-step-number {
+            width: 30px;
+            height: 30px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 5px;
+        }
+        
+        .window {
+            background: #333;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        
+        .active {
+            opacity: 1;
+        }
+        
+        .inactive {
+            opacity: 0.3;
+        }
+        
+        .puzzle {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+        
+        .puzzle-piece {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5em;
+            font-weight: bold;
         }
         
-        .danger {
-            background: #fff5f5;
-            border-left: 4px solid #e74c3c;
-        }
-        
-        .danger .icon {
-            background: #e74c3c;
+        .real-data {
+            background: #4caf50;
             color: white;
         }
         
-        .success {
-            background: #f0fdf4;
-            border-left: 4px solid #27ae60;
-        }
-        
-        .success .icon {
-            background: #27ae60;
+        .hallucinated {
+            background: repeating-linear-gradient(
+                45deg,
+                #ff5252,
+                #ff5252 10px,
+                #ff8a80 10px,
+                #ff8a80 20px
+            );
             color: white;
-        }
-        
-        .info {
-            background: #f0f9ff;
-            border-left: 4px solid #3498db;
-        }
-        
-        .info .icon {
-            background: #3498db;
-            color: white;
-        }
-        
-        .warning {
-            background: #fffbeb;
-            border-left: 4px solid #f39c12;
-        }
-        
-        .warning .icon {
-            background: #f39c12;
-            color: white;
-        }
-        
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        
-        li {
-            padding: 12px 0;
-            padding-left: 35px;
-            position: relative;
-            line-height: 1.6;
-        }
-        
-        li:before {
-            content: '';
-            position: absolute;
-            left: 10px;
-            top: 20px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: currentColor;
-            opacity: 0.5;
-        }
-        
-        .example {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-        
-        .example-label {
-            font-weight: 600;
-            color: #667eea;
-            font-size: 0.9em;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .example-text {
-            font-family: 'Courier New', monospace;
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 5px;
-            border-left: 3px solid #667eea;
+            opacity: 0.7;
         }
         
         .footer {
-            background: #2c3e50;
-            color: white;
+            background: #f5f5f5;
             padding: 30px;
             text-align: center;
         }
         
-        .principle {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-            font-size: 1.1em;
+        .footer-text {
+            color: #666;
+            font-size: 0.95em;
             line-height: 1.6;
-            margin-bottom: 20px;
         }
         
-        .signature {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
+        .credits {
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-size: 0.95em;
+            border-top: 1px solid #ddd;
+            font-size: 0.85em;
+            color: #888;
         }
         
-        .cc-license {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.1);
-            padding: 8px 15px;
-            border-radius: 20px;
+        .highlight {
+            color: #667eea;
+            font-weight: 600;
         }
         
-        .cc-license svg {
-            height: 20px;
-            width: auto;
-            fill: white;
-        }
-        
-        @media (max-width: 768px) {
-            h1 {
+        @media (max-width: 600px) {
+            .header h1 {
                 font-size: 1.8em;
             }
             
-            .loop {
-                flex-direction: column;
+            .concept {
+                padding: 30px 20px;
             }
             
-            .arrow {
-                transform: rotate(90deg);
+            .concept-number {
+                left: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2em;
             }
             
-            .signature {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            }
-            50% {
-                box-shadow: 0 4px 25px rgba(102, 126, 234, 0.5);
-            }
-            100% {
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            .concept-content {
+                margin-left: 40px;
             }
         }
     </style>
@@ -293,129 +276,119 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🧠 Utiliser l'IA avec Esprit Critique</h1>
-            <div class="subtitle">Comment transformer ChatGPT en véritable outil de réflexion</div>
+            <h1>L'IA DÉMYSTIFIÉE</h1>
+            <div class="subtitle">5 concepts pour enfin comprendre</div>
         </div>
         
-        <div class="central-concept">
-            <h2 style="color: #2c3e50; margin-bottom: 10px;">💡 Le concept clé à comprendre</h2>
-            <p style="font-size: 1.1em; color: #555; margin-bottom: 20px;">
-                L'IA ne "pense" pas, elle prédit le mot suivant le plus probable selon ta question
-            </p>
-            
-            <div class="loop">
-                <div class="loop-item">Ta Question</div>
-                <div class="arrow">→</div>
-                <div class="loop-item">Contexte créé</div>
-                <div class="arrow">→</div>
-                <div class="loop-item">Réponse prédite</div>
-                <div class="arrow">→</div>
-                <div class="loop-item">Ta Question</div>
-            </div>
-            
-            <div class="key-message pulse">
-                ⚡ Tu es co-auteur·ice de chaque réponse de l'IA
+        <div class="concept">
+            <div class="concept-number">1</div>
+            <div class="concept-content">
+                <h2 class="concept-title">Prédiction statistique</h2>
+                <div class="concept-visual">
+                    <div class="visual-prediction">
+                        <span>Tu écris : "pomme de..."</span>
+                        <span class="arrow">→</span>
+                        <span class="word-option high-prob">terre 85%</span>
+                        <span class="word-option med-prob">pin 10%</span>
+                        <span class="word-option low-prob">ciel 5%</span>
+                    </div>
+                </div>
+                <p class="concept-explanation">
+                    L'IA prédit le mot suivant selon les fréquences observées dans ses données. Pas de magie, juste des statistiques massives.
+                </p>
             </div>
         </div>
         
-        <div class="grid">
-            <div class="section danger">
-                <h2>
-                    <span class="icon">⚠️</span>
-                    Les pièges à éviter
-                </h2>
-                <ul>
-                    <li><strong>L'effet miroir :</strong> L'IA copie ton style et confirme tes idées</li>
-                    <li><strong>La complaisance :</strong> Elle cherche à te satisfaire plutôt qu'à être exacte</li>
-                    <li><strong>La bulle :</strong> Tu dialogues avec tes propres idées reformulées</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Piège typique</div>
-                    <div class="example-text">
-                        ❌ "J'ai raison de penser que X est vrai, non ?"<br>
-                        → L'IA va probablement confirmer
+        <div class="concept">
+            <div class="concept-number">2</div>
+            <div class="concept-content">
+                <h2 class="concept-title">Transformation texte → nombres</h2>
+                <div class="concept-visual">
+                    <div class="visual-transform">
+                        <span>"Chat"</span>
+                        <span class="arrow">→</span>
+                        <span class="numbers">[0.2, -0.5, 0.8, 1.3...]</span>
                     </div>
                 </div>
+                <p class="concept-explanation">
+                    Chaque mot devient des coordonnées numériques. Les mots similaires ont des coordonnées proches. L'IA manipule ces nombres, pas du sens.
+                </p>
             </div>
-            
-            <div class="section success">
-                <h2>
-                    <span class="icon">✨</span>
-                    Techniques pour mieux réfléchir
-                </h2>
-                <ul>
-                    <li><strong>Demander plusieurs angles :</strong> "Donne-moi 3 façons différentes de voir ce problème"</li>
-                    <li><strong>Chercher les failles :</strong> "Où mon raisonnement pourrait être trop simple ?"</li>
-                    <li><strong>Inverser les rôles :</strong> "Quelles questions devrais-je me poser sur ce sujet ?"</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Bonne pratique</div>
-                    <div class="example-text">
-                        ✅ "Argumente CONTRE cette idée : [ton idée]"<br>
-                        → Force l'IA à te challenger
+        </div>
+        
+        <div class="concept">
+            <div class="concept-number">3</div>
+            <div class="concept-content">
+                <h2 class="concept-title">Ajustement par erreur</h2>
+                <div class="concept-visual">
+                    <div class="cycle">
+                        <div class="cycle-step">
+                            <div class="cycle-step-number">1</div>
+                            <div>Essai</div>
+                        </div>
+                        <div class="cycle-step">
+                            <div class="cycle-step-number">2</div>
+                            <div>Erreur</div>
+                        </div>
+                        <div class="cycle-step">
+                            <div class="cycle-step-number">3</div>
+                            <div>Correction</div>
+                        </div>
                     </div>
                 </div>
+                <p class="concept-explanation">
+                    L'entraînement répète ce cycle des millions de fois. L'IA ajuste ses calculs jusqu'à minimiser l'erreur. Apprentissage par correction, pas compréhension.
+                </p>
             </div>
-            
-            <div class="section info">
-                <h2>
-                    <span class="icon">🎯</span>
-                    Comment formuler tes demandes
-                </h2>
-                <ul>
-                    <li><strong>Sois précis·e :</strong> Chaque mot oriente la réponse</li>
-                    <li><strong>Impose des contraintes :</strong> "Explique comme à un·e enfant" ou "En 3 points maximum"</li>
-                    <li><strong>Varie les approches :</strong> Reformule différemment pour explorer</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Transformation utile</div>
-                    <div class="example-text">
-                        Au lieu de : "C'est quoi le marketing ?"<br>
-                        Essaie : "Compare 3 définitions contradictoires du marketing"
+        </div>
+        
+        <div class="concept">
+            <div class="concept-number">4</div>
+            <div class="concept-content">
+                <h2 class="concept-title">Contexte temporaire</h2>
+                <div class="concept-visual">
+                    <div class="window">
+                        <div class="active">💬 Ta dernière question</div>
+                        <div class="active">🤖 Ma réponse actuelle</div>
+                        <div class="inactive">... (conversation oubliée)</div>
                     </div>
                 </div>
+                <p class="concept-explanation">
+                    L'IA traite uniquement le texte de la conversation actuelle. Pas de mémoire permanente. Chaque réponse recalcule tout depuis le début.
+                </p>
             </div>
-            
-            <div class="section warning">
-                <h2>
-                    <span class="icon">🔄</span>
-                    Créer de la friction cognitive
-                </h2>
-                <ul>
-                    <li><strong>Force la contradiction :</strong> Demande toujours un contre-argument</li>
-                    <li><strong>Multiplie les perspectives :</strong> "Comment un·e économiste, un·e philosophe et un·e ingénieur·e verraient ce problème ?"</li>
-                    <li><strong>Teste la robustesse :</strong> "Quelle est la plus grosse faiblesse de cette approche ?"</li>
-                </ul>
-                
-                <div class="example">
-                    <div class="example-label">Question puissante</div>
-                    <div class="example-text">
-                        💪 "Si tu devais me convaincre du contraire, quels seraient tes 3 meilleurs arguments ?"
+        </div>
+        
+        <div class="concept">
+            <div class="concept-number">5</div>
+            <div class="concept-content">
+                <h2 class="concept-title">Hallucination = invention plausible</h2>
+                <div class="concept-visual">
+                    <div class="puzzle">
+                        <div class="puzzle-piece real-data">✓</div>
+                        <div class="puzzle-piece real-data">✓</div>
+                        <div class="puzzle-piece hallucinated">?</div>
+                        <div class="puzzle-piece real-data">✓</div>
+                        <div class="puzzle-piece hallucinated">?</div>
+                        <div class="puzzle-piece real-data">✓</div>
                     </div>
                 </div>
+                <p class="concept-explanation">
+                    L'IA comble les vides par cohérence statistique, pas par vérification. Si les patterns suggèrent une info plausible, elle l'invente.
+                </p>
             </div>
         </div>
         
         <div class="footer">
-            <div class="principle">
-                <strong>🎓 Principe fondamental :</strong><br>
-                La qualité de la réponse ne dépend pas de l'intelligence de l'IA,<br>
-                mais de ta capacité à structurer des questions qui génèrent de la réflexion critique.
+            <div class="footer-text">
+                <strong>Tu comprends maintenant :</strong><br>
+                L'IA est un <span class="highlight">système statistique</span>, pas une entité pensante.<br>
+                Elle <span class="highlight">prédit</span> des suites probables, sans comprendre.<br>
+                Elle <span class="highlight">invente</span> quand elle ne sait pas.
             </div>
-            
-            <div class="signature">
-                <span><strong>Rochane Kherbouche</strong></span>
-                <div class="cc-license">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                        <circle cx="32" cy="32" r="30" fill="none" stroke="white" stroke-width="4"/>
-                        <path d="M32 15c-9.4 0-17 7.6-17 17s7.6 17 17 17c4.5 0 8.6-1.7 11.7-4.6l-4.2-3.7c-2.1 1.8-4.7 2.8-7.5 2.8-6.4 0-11.5-5.2-11.5-11.5S25.6 20.5 32 20.5c2.8 0 5.4 1 7.5 2.8l4.2-3.7C40.6 16.7 36.5 15 32 15z"/>
-                        <path d="M41 27c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 5.5c-0.8 0-1.5-0.7-1.5-1.5s0.7-1.5 1.5-1.5 1.5 0.7 1.5 1.5-0.7 1.5-1.5 1.5z"/>
-                    </svg>
-                    <span>CC BY-SA</span>
-                </div>
+            <div class="credits">
+                Rochane Kherbouche • Creative Commons CC BY-SA<br>
+                Partage et adapte librement cette infographie
             </div>
         </div>
     </div>
